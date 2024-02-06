@@ -17,7 +17,7 @@ load_dotenv()
 
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder_unfiltered.csv')
 
-external_css = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css", ]
+external_css = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css",'styles.css' ]
 
 valueENV = os.getenv("Token") 
 if valueENV is None:
@@ -35,6 +35,14 @@ app.layout = html.Div(
         html.Div("Python Multipage App with Dash"+value, style={'fontSize':50, 'textAlign':'center'}),
         html.Div([
             dcc.Link("•  "+page['name'], href=page['path'], className="btn btn-dark m-2 fs-5")
+            for page in dash.page_registry.values()
+        ]
+        , style={'fontSize':50, 'textAlign':'center'}
+        ),
+        html.Div([
+            dcc.Link("•  "+page['name'], href=page['path'], style={'background-color':'#555555','fontSize':30,
+                                                                   'color':'white','margin': '10px',
+                                                                   'border-radius': '3px'})
             for page in dash.page_registry.values()
         ]
         , style={'fontSize':50, 'textAlign':'center'}
