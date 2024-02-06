@@ -12,7 +12,10 @@ import dash
 
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder_unfiltered.csv')
 
-app = Dash(__name__, pages_folder='pages' , use_pages=True)
+external_css = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css", ]
+
+
+app = Dash(__name__, pages_folder='pages' , use_pages=True, external_stylesheets=external_css)
 server = app.server
 
 
@@ -21,7 +24,7 @@ app.layout = html.Div(
         # main app framework
         html.Div("Python Multipage App with Dash", style={'fontSize':50, 'textAlign':'center'}),
         html.Div([
-            dcc.Link(page['name']+"  |  ", href=page['path'])
+            dcc.Link("  |  "+page['name']+"  |  ", href=page['path'], className="btn btn-dark m-2 fs-5")
             for page in dash.page_registry.values()
         ]),
         html.Hr(),
