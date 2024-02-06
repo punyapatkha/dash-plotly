@@ -24,7 +24,7 @@ if valueENV is None:
     value = 'Token not found'
 else:
     value = valueENV
-    
+
 app = Dash(__name__, pages_folder='pages' , use_pages=True, external_stylesheets=external_css)
 server = app.server
 
@@ -34,9 +34,11 @@ app.layout = html.Div(
         # main app framework
         html.Div("Python Multipage App with Dash"+value, style={'fontSize':50, 'textAlign':'center'}),
         html.Div([
-            dcc.Link("  |  "+page['name']+"  |  ", href=page['path'], className="btn btn-dark m-2 fs-5")
+            dcc.Link("•  "+page['name'], href=page['path'], className="btn btn-dark m-2 fs-5")
             for page in dash.page_registry.values()
-        ]),
+        ]
+        , style={'fontSize':50, 'textAlign':'center'}
+        ),
         html.Hr(),
 
         # content of each page
