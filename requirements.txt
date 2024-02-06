@@ -1,4 +1,15 @@
-Flask==3.0.0
+# Flask==3.0.0
 dash
+# local
+# dash==2.14.2
+# pip install dash==2.5.0
 pandas
 gunicorn
+
+Flask==2.2
+Werkzeug==2.2.2
+# dash==2.5.0
+
+# https://community.plotly.com/t/multipage-app-with-dash-2-5-0/68469
+# fix multi page bug can register only 1 page
+dash==2.6.1
