@@ -5,6 +5,6 @@ dash.register_page(__name__,path='/home2')
 
 layout = html.Div(
     [
-        dcc.Markdown('# This will be the content of Page 3')
+        dcc.Markdown('# This will be the content of Page 2')
     ]
 )
