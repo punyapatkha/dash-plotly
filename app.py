@@ -13,7 +13,7 @@ import dash
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder_unfiltered.csv')
 
 app = Dash(__name__, pages_folder='pages' , use_pages=True)
-# server = app.server
+server = app.server
 
 
 app.layout = html.Div(
