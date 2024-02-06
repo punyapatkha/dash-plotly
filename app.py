@@ -2,6 +2,11 @@ from dash import Dash, html, dcc, callback, Output, Input
 import plotly.express as px
 import pandas as pd
 import dash
+
+import os 
+from dotenv import load_dotenv
+load_dotenv()
+
 # blog for deploy
 # https://community.plotly.com/t/migrating-from-heroku-how-to-use-render-to-deploy-a-python-dash-app-solution/68048
 
@@ -14,7 +19,12 @@ df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapmi
 
 external_css = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css", ]
 
-
+valueENV = os.getenv("Token") 
+if valueENV is None:
+    value = 'Token not found'
+else:
+    value = valueENV
+    
 app = Dash(__name__, pages_folder='pages' , use_pages=True, external_stylesheets=external_css)
 server = app.server
 
@@ -22,7 +32,7 @@ server = app.server
 app.layout = html.Div(
     [
         # main app framework
-        html.Div("Python Multipage App with Dash", style={'fontSize':50, 'textAlign':'center'}),
+        html.Div("Python Multipage App with Dash"+value, style={'fontSize':50, 'textAlign':'center'}),
         html.Div([
             dcc.Link("  |  "+page['name']+"  |  ", href=page['path'], className="btn btn-dark m-2 fs-5")
             for page in dash.page_registry.values()
