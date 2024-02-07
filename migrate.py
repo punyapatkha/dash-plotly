@@ -61,5 +61,56 @@ def main():
     SQLModel.metadata.drop_all(engine)
     SQLModel.metadata.create_all(engine)
 
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+
+
 if __name__ == "__main__":
     main()
+    # Define column names and types
+	table = {'customer':{'name':['','','',''],
+			     'types':['','','',''],
+			     'rows':10
+			    },
+		 'branch':{'name':['','','',''],
+			     'types':['','','',''],
+			   'rows':5
+			    }
+		
+		}
+	for i in table:
+		data = {}
+		num_rows = table[i]['rows']
+		for name, dtype in zip( table[i]['name'],  table[i]['types']):
+		
+
+	
+	df.to_sql(name=i, con=engine)
+	
+	column_names = ['ID', 'Name', 'Salary', 'Join_Date']
+	column_types = [int, str, float, 'datetime64[ns]']
+	num_rows = 10  # Number of rows for mock data
+	
+	# Generate mock data
+	data = {}
+	for name, dtype in zip(column_names, column_types):
+	    if dtype == int:
+	        data[name] = np.random.randint(1, 100, size=num_rows)
+	    elif dtype == float:
+	        data[name] = np.random.uniform(20000, 100000, size=num_rows)
+	    elif dtype == str:
+	        data[name] = ['Name_' + str(i) for i in range(1, num_rows+1)]
+	    elif dtype == 'datetime64[ns]':
+	        start_date = datetime(2020, 1, 1)
+	        end_date = datetime(2022, 12, 31)
+	        delta = end_date - start_date
+	        random_dates = [start_date + timedelta(days=np.random.randint(delta.days)) for _ in range(num_rows)]
+	        data[name] = random_dates
+	
+	# Create pandas DataFrame
+	df = pd.DataFrame(data)
+	
+	# Display DataFrame
+	# print(df)
+	df.to_sql(name='customer', con=engine)
