@@ -19,3 +19,7 @@ langchain
 langchain-community
 langchain-openai
 
+SQLAlchemy
+psycopg2-binary~=2.9.3
+names
+python-dotenv
