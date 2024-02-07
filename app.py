@@ -32,7 +32,7 @@ server = app.server
 app.layout = html.Div(
     [
         # main app framework
-        html.Div("RETAIL Dashboard", style={'fontSize':20,'margin-top':20, 'textAlign':'center'}),
+        html.Div("RETAIL Dashboard v.1.0", style={'fontSize':20,'margin-top':20, 'textAlign':'center'}),
         dcc.Location(id='url', refresh=False), 
         
         # html.Div("variable : "+value, style={'fontSize':15, 'textAlign':'center'}),
