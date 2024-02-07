@@ -2,7 +2,7 @@ import dash
 from dash import dcc, html
 import plotly.express as px
 
-dash.register_page(__name__,path='/home3',name="Star ❄️ ")
+dash.register_page(__name__,path='/home3',name="Cluster Analysis 📊 ")
 
 df = px.data.tips()
 

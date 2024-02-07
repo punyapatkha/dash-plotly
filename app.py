@@ -32,21 +32,19 @@ server = app.server
 app.layout = html.Div(
     [
         # main app framework
-        html.Div("Python Multipage App with Dash"+value, style={'fontSize':50, 'textAlign':'center'}),
+        html.Div("RETAIL Dashboard", style={'fontSize':20,'margin-top':20, 'textAlign':'center'}),
+        dcc.Location(id='url', refresh=False), 
+        
+        # html.Div("variable : "+value, style={'fontSize':15, 'textAlign':'center'}),
+
         html.Div([
             dcc.Link("•  "+page['name'], href=page['path'], className="btn btn-dark m-2 fs-5")
             for page in dash.page_registry.values()
         ]
         , style={'fontSize':50, 'textAlign':'center'}
         ),
-        html.Div([
-            dcc.Link("•  "+page['name'], href=page['path'], style={'background-color':'#555555','fontSize':30,
-                                                                   'color':'white','margin': '10px',
-                                                                   'border-radius': '3px'})
-            for page in dash.page_registry.values()
-        ]
-        , style={'fontSize':50, 'textAlign':'center'}
-        ),
+        html.Hr(),
+        html.Div(id='url-output'),
         html.Hr(),
 
         # content of each page
@@ -64,6 +62,12 @@ app.layout = html.Div(
 #     dash.page_container
 # ])
 
+@app.callback(
+    Output('url-output', 'children'),
+    [Input('url', 'pathname')]
+)
+def display_page_pathname(pathname):
+    return f"The current URL is: {pathname}"
 
 if __name__ == '__main__':
 
