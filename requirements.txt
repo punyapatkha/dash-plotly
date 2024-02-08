@@ -24,3 +24,4 @@ sqlmodel
 psycopg2-binary~=2.9.3
 names
 python-dotenv
+dash_bootstrap_templates
