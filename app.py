@@ -17,15 +17,27 @@ load_dotenv()
 
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder_unfiltered.csv')
 
-external_css = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css",'styles.css' ]
-
 valueENV = os.getenv("Token") 
 if valueENV is None:
     value = 'Token not found'
 else:
     value = valueENV
 
-app = Dash(__name__, pages_folder='pages' , use_pages=True, external_stylesheets=external_css)
+import dash_bootstrap_components as dbc
+from dash_bootstrap_templates import load_figure_template
+
+
+# loads the "darkly" template and sets it as the default
+load_figure_template("darkly")
+
+
+
+external_css = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css",'styles.css',dbc.themes.DARKLY ]
+
+
+app = Dash(__name__, pages_folder='pages' , use_pages=True, 
+           external_stylesheets=external_css
+           )
 server = app.server
 
 
