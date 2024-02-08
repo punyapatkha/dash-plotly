@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from sqlalchemy import create_engine
 import pandas as pd
+from utils.db import printa
 
 valueENV = os.getenv("DBconnection") 
 if valueENV is None:
@@ -23,6 +24,6 @@ dash.register_page(__name__,path='/',name="Sales Summary 📋 ")
 
 layout = html.Div(
     [
-        dcc.Markdown('# This will be the content of Page 1')
+        dcc.Markdown('# This will be the content of Page 1'+printa("a"))
     ]
 )

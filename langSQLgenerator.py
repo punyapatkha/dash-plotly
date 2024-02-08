@@ -22,6 +22,6 @@ from langchain_openai import ChatOpenAI
 
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 chain = create_sql_query_chain(llm, db)
-response = chain.invoke({"question": "what product categories has highest sales in each branch with no limit"})
+response = chain.invoke({"question": "can you summarize each branch sales in each month with no limit"})
 print(response)
 print(db.run(response))
