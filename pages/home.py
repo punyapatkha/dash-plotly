@@ -8,7 +8,7 @@ from dash_bootstrap_templates import load_figure_template
 import dash_bootstrap_components as dbc
 load_figure_template(["cyborg", "darkly"])
 from utils.db import printa
-from dash import Dash, html, dcc
+from dash import Dash, html, dcc, Input, Output, callback
 import plotly.express as px
 import pandas as pd
 
@@ -45,40 +45,75 @@ df = pd.read_sql_query("select * from transaction", engine)
 fig = px.scatter(df, x="tran_date", y="total_price", template='darkly')
 
 
+layout = html.Div([
+    dcc.Graph(id='graph-with-slider'),
+    # dcc.Slider(
+    #     df['year'].min(),
+    #     df['year'].max(),
+    #     step=None,
+    #     value=df['year'].min(),
+    #     marks={str(year): str(year) for year in df['year'].unique()},
+    #     id='year-slider'
+    # ),
+    # dcc.Dropdown(df['branch_id'].unique(), df['branch_id'].unique()[1],id='year-slider')
+    dcc.Checklist(
+    df['branch_id'].unique(),df['branch_id'].unique(),id='year-slider'
+)
+]),
 
-layout =html.Div([
-    html.Div(children=[
-        html.Label('Dropdown'),
-        dcc.Dropdown(['New York City', 'Montréal', 'San Francisco'], 'Montréal'),
+@callback(
+    Output('graph-with-slider', 'figure'),
+    Input('year-slider', 'value'))
+def update_figure(selected_year):
+    # filtered_df = df[df.branch_id == selected_year]
+    
+    filtered_df = df[df.branch_id.isin(selected_year)]
+    fig = px.scatter(filtered_df, 
+                     y="total_price", 
+                     x="branch_id",
+                    #  size="pop", 
+                    #  color="continent", 
+                    #  hover_name="country",
+                     log_x=True, size_max=55)
 
-        html.Br(),
-        html.Label('Multi-Select Dropdown'),
-        dcc.Dropdown(['New York City', 'Montréal', 'San Francisco'],
-                     ['Montréal', 'San Francisco'],
-                     multi=True),
+    fig.update_layout(transition_duration=500)
 
-        html.Br(),
-        html.Label('Radio Items'),
-        dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'], 'Montréal'),
-    ], style={'padding': 30, 'flex': 1}),
+    return fig
 
-    html.Div(children=[
-        html.Label('Checkboxes'),
-        dcc.Checklist(['New York City', 'Montréal', 'San Francisco'],
-                      ['Montréal', 'San Francisco']
-        ),
+# layout =html.Div([
+    
+#     html.Div(children=[
+#         html.Label('Dropdown'),
+#         dcc.Dropdown(['New York City', 'Montréal', 'San Francisco'], 'Montréal'),
 
-        html.Br(),
-        html.Label('Text Input'),
-        dcc.Input(value='MTL', type='text'),
+#         html.Br(),
+#         html.Label('Multi-Select Dropdown'),
+#         dcc.Dropdown(['New York City', 'Montréal', 'San Francisco'],
+#                      ['Montréal', 'San Francisco'],
+#                      multi=True),
 
-        html.Br(),
-        html.Label('Slider'),
-        dcc.Slider(
-            min=0,
-            max=9,
-            marks={i: f'Label {i}' if i == 1 else str(i) for i in range(1, 6)},
-            value=5,
-        ),
-    ], style={'padding': '10vw 30vw' , 'flex': 1})
-], style={'display': 'flex', 'flexDirection': 'row'})
+#         html.Br(),
+#         html.Label('Radio Items'),
+#         dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'], 'Montréal'),
+#     ], style={'padding': 30, 'flex': 1}),
+
+#     html.Div(children=[
+#         html.Label('Checkboxes'),
+#         dcc.Checklist(['New York City', 'Montréal', 'San Francisco'],
+#                       ['Montréal', 'San Francisco']
+#         ),
+
+#         html.Br(),
+#         html.Label('Text Input'),
+#         dcc.Input(value='MTL', type='text'),
+
+#         html.Br(),
+#         html.Label('Slider'),
+#         dcc.Slider(
+#             min=0,
+#             max=9,
+#             marks={i: f'Label {i}' if i == 1 else str(i) for i in range(1, 6)},
+#             value=5,
+#         ),
+#     ], style={'padding': '10vw 30vw' , 'flex': 1})
+# ], style={'display': 'flex', 'flexDirection': 'row'})
