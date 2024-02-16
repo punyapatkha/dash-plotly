@@ -2,7 +2,7 @@ from dash import Dash, html, dcc, callback, Output, Input
 import plotly.express as px
 import pandas as pd
 import dash
-
+import dash_auth
 import os 
 from dotenv import load_dotenv
 load_dotenv()
@@ -31,6 +31,9 @@ from dash_bootstrap_templates import load_figure_template
 load_figure_template("darkly")
 
 
+# VALID_USERNAME_PASSWORD_PAIRS = {
+#     'hello': 'world'
+# }
 
 external_css = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css",'styles.css',dbc.themes.DARKLY ]
 
@@ -38,6 +41,11 @@ external_css = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap
 app = Dash(__name__, pages_folder='pages' , use_pages=True, 
            external_stylesheets=external_css
            )
+# auth = dash_auth.BasicAuth(
+#     app,
+#     VALID_USERNAME_PASSWORD_PAIRS
+# )
+
 server = app.server
 
 

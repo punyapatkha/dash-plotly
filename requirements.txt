@@ -14,6 +14,7 @@ Werkzeug==2.2.2
 # https://community.plotly.com/t/multipage-app-with-dash-2-5-0/68469
 # fix multi page bug can register only 1 page
 dash==2.6.1
+dash-auth
 
 langchain
 langchain-community
