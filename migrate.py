@@ -149,6 +149,8 @@ def create_random_record():
 					data[name] = np.random.randint(1, 3+1, size=num_rows)
 				elif name == 'total_price':
 					data[name] = np.random.randint(500,5000, size=num_rows)
+				elif name == 'amount':
+					data[name] = np.random.randint(1,5, size=num_rows)
 				else:
 					data[name] = np.random.randint(1, 100, size=num_rows)
 			elif dtype == float:
@@ -174,6 +176,65 @@ def create_random_record():
 		df.to_sql(i, con=engine, if_exists='append',index=False)
 
 
+def update_record():
+	from sqlalchemy.sql import text
+	with engine.connect() as con:
+		statement1 = text("""
+					UPDATE "order"
+					SET price=subquery.unit_price
+					FROM (SELECT b.unit_price ,b.id
+					FROM  product b ) AS subquery
+					WHERE "order".product_id=subquery.id;
+					""")
+		con.execute(statement1)
+		con.commit()
+		
+		statement1 = text("""
+					UPDATE "order"		
+					SET amount = 	case when "order".price > 100 then floor(random()* (3-1 + 1) + 1)
+					else floor(random()* (10-1 + 1) + 1) END
+					-- floor(random()* (high-low + 1) + low)
+					
+					""")
+		con.execute(statement1)
+		con.commit()
+
+		statement2 = text("""
+					UPDATE "order"
+					SET amount_price = amount*price
+					""")
+		con.execute(statement2)
+		con.commit()
+		
+		statement3 = text("""
+					UPDATE "transaction"
+					SET total_price=subquery.sum_order
+					FROM (SELECT sum(b.amount_price) as sum_order ,b.tran_id
+					FROM  "order" b 
+					group by b.tran_id
+					) AS subquery
+					WHERE subquery.tran_id=transaction.id;
+					""")
+		con.execute(statement3)
+		con.commit()
+
+		statement4 = text("""
+					Delete from "transaction" 
+					WHERE "transaction".id not in (select b.tran_id from "order" b);
+					""")
+		con.execute(statement4)
+		con.commit()
+
+# with engine.connect() as con:
+
+#     data = ( { "id": 1, "title": "The Hobbit", "primary_author": "Tolkien" },
+#              { "id": 2, "title": "The Silmarillion", "primary_author": "Tolkien" },
+#     )
+
+#     statement = text("""INSERT INTO book(id, title, primary_author) VALUES(:id, :title, :primary_author)""")
+
+#     for line in data:
+#         con.execute(statement, **line)
 
 
 
@@ -181,3 +242,4 @@ if __name__ == "__main__":
 	create_table()
 	create_fixed_record()
 	create_random_record()
+	update_record()
