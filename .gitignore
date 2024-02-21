@@ -11,3 +11,7 @@ venv/
 ENV/ 
 env.bak/ 
 venv.bak/ 
+
+df.ipynb
+lang.py
+langSQLgenerator.py
