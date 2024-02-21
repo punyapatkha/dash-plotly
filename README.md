@@ -20,6 +20,12 @@ integrate with SQL Database and Langchain
 
 ## Running Locally
 
+# 1.Create postgres database
+# 2.Run migrate.py to generate random data for mockup
+# 3.Get openAI API token
+# 4.deploy to Render and add environment variable for database and OpenAI API
+# 5.Set up cron-tab to wake Render serverless function
+
 ```
 python app.py
 ```
