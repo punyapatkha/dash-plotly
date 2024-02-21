@@ -31,9 +31,9 @@ from dash_bootstrap_templates import load_figure_template
 load_figure_template("darkly")
 
 
-# VALID_USERNAME_PASSWORD_PAIRS = {
-#     'hello': 'world'
-# }
+VALID_USERNAME_PASSWORD_PAIRS = {
+    'mindover': 'data2024'
+}
 
 external_css = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css",'styles.css',dbc.themes.DARKLY ]
 
@@ -41,10 +41,10 @@ external_css = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap
 app = Dash(__name__, pages_folder='pages' , use_pages=True, 
            external_stylesheets=external_css
            )
-# auth = dash_auth.BasicAuth(
-#     app,
-#     VALID_USERNAME_PASSWORD_PAIRS
-# )
+auth = dash_auth.BasicAuth(
+    app,
+    VALID_USERNAME_PASSWORD_PAIRS
+)
 
 server = app.server
 
