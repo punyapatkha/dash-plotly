@@ -49,7 +49,6 @@ layout = html.Div(
     ]
 , className="textappear", style={'position': 'relative','max-width': '50vw','min-height': '25vw'} )
 
-
 @callback(
     Output("chat-container2", "children"),
     [Input("submit-button", "n_clicks")],

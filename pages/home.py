@@ -244,51 +244,58 @@ layout = html.Div([
                 html.H4('Total Sale Today' , style={'margin':'2vw'} ),
                 
                 html.H3( str(df_total_sale[df_total_sale["period"] == 'today']['sale'].iloc[0])+" $"
- , style={'margin':'2vw'} ),
+ , style={'margin':'2vw','text-shadow': '0 0 5px #008000, 0 0 8px #2AAA8A'} ),
             ], style={
                         # 'padding': 30,
                        'flex': 1 
                       ,'width': '25%'
+                      ,'border-radius': '10px'
                       ,'margin-left':'2vw'
                       ,'margin-right':'2vw'
                       ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+                      ,'background': '#0C0404'
                     #   , 'backgroundColor': '#f8f9fa'
                       }),
             html.Div(children=[
                 html.H4('Total Sale This Month' , style={'margin':'2vw'}),
-                html.H3(str(df_total_sale[df_total_sale["period"] == 'this_month']['sale'].iloc[0])+" $" , style={'margin':'2vw'} ),
+                html.H3(str(df_total_sale[df_total_sale["period"] == 'this_month']['sale'].iloc[0])+" $" , style={'margin':'2vw','text-shadow': '0 0 5px #008000, 0 0 8px #2AAA8A'} ),
             ], style={
                 # 'padding': 30,
                   'flex': 1
                       ,'width': '25%'
+                      ,'border-radius': '10px'
                       ,'margin-left':'2vw'
                       ,'margin-right':'2vw'
                       ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+                      ,'background': '#0C0404'
                     #   , 'backgroundColor': '#f8f9fa'
                       }),
             html.Div(children=[
                 html.H4('Total Sale Last 3 Month', style={'margin':'2vw'} ),
-                html.H3(str(df_total_sale[df_total_sale["period"] == 'last_3month']['sale'].iloc[0])+" $" , style={'margin':'2vw'} ),
+                html.H3(str(df_total_sale[df_total_sale["period"] == 'last_3month']['sale'].iloc[0])+" $" , style={'margin':'2vw','text-shadow': '0 0 5px #008000, 0 0 8px #2AAA8A'} ),
             ], style={
                 # 'padding': 30,
                   'flex': 1
                       ,'width': '25%'
+                      ,'border-radius': '10px'
                       ,'margin-left':'2vw'
                       ,'margin-right':'2vw'
                       ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+                      ,'background': '#0C0404'
                     #   , 'backgroundColor': '#f8f9fa'
                       }),
 
 
             html.Div(children=[            
                 html.H4('Total Sale Last 12 Month' , style={'margin':'2vw'} ),
-                html.H3(  str(df_total_sale[df_total_sale["period"] == 'last_12month']['sale'].iloc[0])+" $" , style={'margin':'2vw'} ),
+                html.H3(  str(df_total_sale[df_total_sale["period"] == 'last_12month']['sale'].iloc[0])+" $" , style={'margin':'2vw','text-shadow': '0 0 5px #008000, 0 0 8px #2AAA8A'} ),
             ], style={
                     #   'padding': '10vw 30vw' , 
                       'flex': 1
                       ,'width': '25%'
-                    #   ,'border-radius': '20px'
-                      ,'background': '#73AD21'
+                      ,'border-radius': '10px'
+                      ,'background': '#0C0404'
+                      
                       ,'margin-left':'2vw'
                       ,'margin-right':'2vw'
                       ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
@@ -299,7 +306,8 @@ layout = html.Div([
                     #   ,'margin': '20px' 
                       
                       })
-        ], style={'display': 'flex', 'flexDirection': 'row' , 'margin-bottom':'2vw' , 'margin-top':'2vw'})
+        ], style={'display': 'flex', 'flexDirection': 'row' , 'margin-bottom':'2vw' , 'margin-top':'2vw'
+                  })
     ]),
 
 
@@ -338,9 +346,8 @@ layout = html.Div([
                 
             ], style={
                        'flex': 1
-
                       ,'width': '25%'
-                      
+                      ,'background': '#0C0404'
                       ,'margin': '2vw'
                       ,'border-radius': '20px'
                       ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
@@ -361,7 +368,8 @@ layout = html.Div([
                       ,'margin': '2vw'
                       
                       ,'border-radius': '20px'
-                      ,'background': '#333333'
+                    #   ,'background': '#333333'
+                      ,'background': '#0C0404'
                       ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
                     
                       })
