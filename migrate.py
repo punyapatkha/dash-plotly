@@ -167,8 +167,8 @@ def create_random_record():
 				else:
 					data[name] = ['Name_' + str(i) for i in range(1, num_rows+1)]
 			elif dtype == 'datetime64[ns]':
-				start_date = datetime.datetime(2020, 1, 1)
-				end_date = datetime.datetime(2022, 12, 31)
+				start_date = datetime.datetime(2023, 1, 1)
+				end_date = datetime.datetime(2024, 2, 20)
 				delta = end_date - start_date
 				random_dates = [start_date + timedelta(days=np.random.randint(delta.days)) for _ in range(num_rows)]
 				data[name] = random_dates

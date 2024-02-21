@@ -2,3 +2,51 @@ body {
     background-color: #454545;
     color: white; /* Set text color to white for better contrast */
 }
+.newline {
+  white-space: pre-wrap;
+  max-width: 50vw;
+}
+.appearanima {
+  /* to add new line with \n  */
+  white-space: pre-wrap;
+  overflow: hidden;
+  opacity: 0;
+  /* animation: appearText 0.5s forwards; */
+  animation: appearText 1.5s forwards;
+}
+@keyframes appearText {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.textappear {
+    /* to add new line with \n  */
+    /* white-space: pre-wrap; */
+    overflow: hidden;
+    opacity: 0;
+    /* animation: appearText 0.5s forwards; */
+    animation: appearText 1.5s forwards;
+  }
+  @keyframes appearText {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
+  .textappear {
+	
+    left:  20vw;
+    right: 10vw;
+  }

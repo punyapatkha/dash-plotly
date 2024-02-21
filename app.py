@@ -50,37 +50,48 @@ server = app.server
 
 
 app.layout = html.Div(
-    [
-        # main app framework
-        html.Div("RETAIL Dashboard v.1.0", style={'fontSize':20,'margin-top':20, 'textAlign':'center'}),
+    [   
+        # header
+        html.Div(children=[    
+            html.Img(src="https://static.wixstatic.com/media/44b0f0_07215d41afde492e982c744e99ff55eb~mv2.png",
+                    style={ 'max-width': '16vw','max-height': '16vw','margin-left':10,'margin-top':10})
+            ,html.Div("Retail Dashboard Prototype")
+        ], style={'fontSize':20
+        #   ,'margin-top':20
+        , 'textAlign':'center'}),
         dcc.Location(id='url', refresh=False), 
         
-        # html.Div("variable : "+value, style={'fontSize':15, 'textAlign':'center'}),
-
         html.Div([
-            dcc.Link("•  "+page['name'], href=page['path'], className="btn btn-dark m-2 fs-5")
-            for page in dash.page_registry.values()
+            # dcc.Link("•  "+page['name'], href=page['path'], className="btn btn-dark m-2 fs-5")
+            # for page in dash.page_registry.values()
+            dcc.Link("• Sales Summary ", href='/', className="btn btn-dark m-2 fs-5"),
+            dcc.Link("• Chat Mind Over Data 💬 ", href="/LLM", className="btn btn-dark m-2 fs-5"),
+            dcc.Link("• Sales Prediction 📈 ", href="/", className="btn btn-dark m-2 fs-5 disabled"),
+            dcc.Link("• Cluster Analysis 📊 ", href="/", className="btn btn-dark m-2 fs-5 disabled"),
+            dcc.Link("• Faurd Detection ⚠️ ", href="/", className="btn btn-dark m-2 fs-5 disabled")
+            
         ]
         , style={'fontSize':50, 'textAlign':'center'}
         ),
         html.Hr(),
-        html.Div(id='url-output'),
-        html.Hr(),
 
         # content of each page
-        dash.page_container
+        # html.Div(dash.page_container,style={ 'min-height': '30vw'}),
+        dash.page_container,
+        # footer
+        
+        html.Hr(),
+        
+        html.Div("CONTACTS", style={'fontSize':15, 'textAlign':'center'}),
+        html.Div("Reach out via email - mockup@mindoverdata.com.", style={'fontSize':12, 'textAlign':'center'}),
+        html.Div("Don't miss any news - follow us at LinkedIn.", style={'fontSize':12, 'textAlign':'center'}),
+        
+        html.Div(id='url-output', style={'fontSize':10, 'textAlign':'center','padding-bottom':8}),
+        # html.Hr()
     ]
 )
 
-# app.layout = html.Div([
-#     html.H1('Multi-page app with Dash Pages'),
-#     html.Div([
-#         html.Div(
-#             dcc.Link(f"{page['name']} - {page['path']}", href=page["relative_path"])
-#         ) for page in dash.page_registry.values()
-#     ]),
-#     dash.page_container
-# ])
+
 
 @app.callback(
     Output('url-output', 'children'),

@@ -28,92 +28,183 @@ else:
 
 dash.register_page(__name__,path='/',name="Sales Summary 📋 ")
 
-# df = pd.DataFrame({
-#     "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-#     "Amount": [4, 1, 2, 2, 4, 5],
-#     "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-# })
-
-# fig2 = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group", template='darkly')
 
 
 df = pd.read_sql_query("select sum(total_price) as total_price,branch_id,employee_id from transaction group by branch_id,employee_id", engine)
 fig2 = px.bar(df, x="employee_id", y="total_price", color="branch_id", barmode="group", template='darkly')
 
+#############################################################################
+# scatter graph
+#############################################################################
 
-df = pd.read_sql_query("select * from transaction", engine)
+
+df = pd.read_sql_query("""
+select 
+a.id,
+a.total_price,
+-- a.employee_id,
+-- a.cust_id,
+date(a.tran_date) as tran_date,
+-- b.id,
+b.price,
+b.amount,
+b.amount_price as order_price,
+b.product_id,
+b.tran_id,
+c.id as branch_id,
+c.name as branch_name,
+c.address_province as branch_address,
+-- d.id,
+d.name as product_cat,
+-- e.id,
+e.name as product_name,
+e.unit_price,
+e.cat_id
+
+-- c.*,extract(month from a.tran_date) "tran_month" ,extract(year from a.tran_date) as "tran_year"
+-- ,b.*
+-- ,b.amount,b.price,b.amount_price,b.product_id,b.tran_id
+from transaction a 
+left join "order" b on a.id = b.tran_id
+left join branch c on a.branch_id = c.id
+left join categories d on b.product_id = d.id
+left join product e on b.product_id = e.id
+-- where 
+order by a.id asc
+""", engine)
 fig = px.scatter(df, x="tran_date", y="total_price", template='darkly')
 
 
-layout = html.Div([
-    dcc.Graph(id='graph-with-slider'),
-    # dcc.Slider(
-    #     df['year'].min(),
-    #     df['year'].max(),
-    #     step=None,
-    #     value=df['year'].min(),
-    #     marks={str(year): str(year) for year in df['year'].unique()},
-    #     id='year-slider'
-    # ),
-    # dcc.Dropdown(df['branch_id'].unique(), df['branch_id'].unique()[1],id='year-slider')
-    dcc.Checklist(
-    df['branch_id'].unique(),df['branch_id'].unique(),id='year-slider'
-)
-]),
 
 @callback(
     Output('graph-with-slider', 'figure'),
     Input('year-slider', 'value'))
-def update_figure(selected_year):
-    # filtered_df = df[df.branch_id == selected_year]
+def update_figure(selected_branch):
+    # filtered_df = df[df.branch_name == selected_branch]
     
-    filtered_df = df[df.branch_id.isin(selected_year)]
+    filtered_df = df[df.branch_name.isin(selected_branch)]
     fig = px.scatter(filtered_df, 
                      y="total_price", 
-                     x="branch_id",
+                     x="tran_date",
                     #  size="pop", 
-                    #  color="continent", 
+                     color="branch_name", 
                     #  hover_name="country",
-                     log_x=True, size_max=55)
+                    #  log_x=True,
+                       size_max=55)
 
     fig.update_layout(transition_duration=500)
 
     return fig
 
-# layout =html.Div([
+#############################################################################
+#
+#############################################################################
+
+layout = html.Div([
+
+   
+       html.Div(children=[
+        html.Div([
     
-#     html.Div(children=[
-#         html.Label('Dropdown'),
-#         dcc.Dropdown(['New York City', 'Montréal', 'San Francisco'], 'Montréal'),
+            html.Div(children=[
+                html.H1('Dash' , className="textappear"),
+            ], style={
+                        # 'padding': 30,
+                       'flex': 1 
+                      ,'width': '25%'
+                    #   , 'backgroundColor': '#f8f9fa'
+                      }),
+            html.Div(children=[
+                html.H1('Dash '),
+            ], style={
+                # 'padding': 30,
+                  'flex': 1
+                      ,'width': '25%'
+                    #   , 'backgroundColor': '#f8f9fa'
+                      }),
+            html.Div(children=[
+                html.H1('Dash '),
+            ], style={
+                # 'padding': 30,
+                  'flex': 1
+                      ,'width': '25%'
+                    #   , 'backgroundColor': '#f8f9fa'
+                      }),
 
-#         html.Br(),
-#         html.Label('Multi-Select Dropdown'),
-#         dcc.Dropdown(['New York City', 'Montréal', 'San Francisco'],
-#                      ['Montréal', 'San Francisco'],
-#                      multi=True),
 
-#         html.Br(),
-#         html.Label('Radio Items'),
-#         dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'], 'Montréal'),
-#     ], style={'padding': 30, 'flex': 1}),
+            html.Div(children=[            
+                html.H1('  Dash ', style={
+                      'border-radius': '20px'
+                      ,'background': '#73AD21'
+                      ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+                      ,'width': '80%'
+                        # ,'padding': '20px' 
+                    #   ,'margin': '20px' 
+                })
+            ], style={
+                    #   'padding': '10vw 30vw' , 
+                      'flex': 1
+                      ,'width': '25%'
+                    #   ,'border-radius': '20px'
+                    #   ,'background': '#73AD21'
+                    #   ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+                    #   ,'padding': '20px' 
+                    #   ,'margin': '20px' 
+                      
+                      })
+        ], style={'display': 'flex', 'flexDirection': 'row'})
+    ]),
 
-#     html.Div(children=[
-#         html.Label('Checkboxes'),
-#         dcc.Checklist(['New York City', 'Montréal', 'San Francisco'],
-#                       ['Montréal', 'San Francisco']
-#         ),
 
-#         html.Br(),
-#         html.Label('Text Input'),
-#         dcc.Input(value='MTL', type='text'),
+    html.Div(children=[
+        html.Div([
+    
+            html.Div(children=[
+                html.H1('Dash '),
+            ], style={
+                       'flex': 1 
+                      ,'width': '25%'
+                      }),
+            html.Div(children=[
+                html.H1('Dash '),
+            ], style={
+                  'flex': 1
+                      ,'width': '25%'
+                      })
+        ], style={'display': 'flex', 'flexDirection': 'row'})
+    ]),
 
-#         html.Br(),
-#         html.Label('Slider'),
-#         dcc.Slider(
-#             min=0,
-#             max=9,
-#             marks={i: f'Label {i}' if i == 1 else str(i) for i in range(1, 6)},
-#             value=5,
-#         ),
-#     ], style={'padding': '10vw 30vw' , 'flex': 1})
-# ], style={'display': 'flex', 'flexDirection': 'row'})
+    html.Div(children=[
+        html.Div([
+    
+            html.Div(children=[
+                html.H1('Dash '),
+                
+            ], style={
+                       'flex': 1
+
+                      ,'width': '25%'
+                      }),
+            html.Div(children=[
+                
+                    dcc.Graph(id='graph-with-slider'),
+                    html.Div('Transaction from Branch',style={'padding-left':'8px',
+                                                              'padding-top':'8px'}),
+                    dcc.Checklist(
+                    df['branch_name'].unique(),df['branch_name'].unique(),id='year-slider'
+                    ,labelStyle={"display": "row","padding":"10px"}
+                    # ,labelStyle={"display": "flex","padding":"8px"}
+                    ,inputStyle={"padding":"8px","margin-right":"8px"})
+            ], style={
+                  'flex': 3
+                      ,'width': '25vw'
+                      ,'margin': '2vw'
+                      
+                      ,'border-radius': '20px'
+                      ,'background': '#333333'
+                      ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+                    
+                      })
+        ], style={'display': 'flex', 'flexDirection': 'row'})
+    ]) 
+])
