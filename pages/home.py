@@ -254,6 +254,7 @@ layout = html.Div([
                       ,'margin-right':'2vw'
                       ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
                       ,'background': '#0C0404'
+                                  ,'border': '2px solid #808080'
                     #   , 'backgroundColor': '#f8f9fa'
                       }),
             html.Div(children=[
@@ -268,6 +269,7 @@ layout = html.Div([
                       ,'margin-right':'2vw'
                       ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
                       ,'background': '#0C0404'
+                                  ,'border': '2px solid #808080'
                     #   , 'backgroundColor': '#f8f9fa'
                       }),
             html.Div(children=[
@@ -282,6 +284,7 @@ layout = html.Div([
                       ,'margin-right':'2vw'
                       ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
                       ,'background': '#0C0404'
+                                  ,'border': '2px solid #808080'
                     #   , 'backgroundColor': '#f8f9fa'
                       }),
 
@@ -299,6 +302,7 @@ layout = html.Div([
                       ,'margin-left':'2vw'
                       ,'margin-right':'2vw'
                       ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+                                  ,'border': '2px solid #808080'
                     #   ,'border-radius': '20px'
                     #   ,'background': '#73AD21'
                     #   ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 5px 15px'

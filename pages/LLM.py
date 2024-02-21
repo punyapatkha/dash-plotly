@@ -45,9 +45,15 @@ layout = html.Div(
                       
                   }),
         html.Button(id="submit-button", n_clicks=0, children="Submit"),
-        ], className="textappear" , style={'margin':'20px'}),
+        ], className="textappear" , style={'margin':'20px',}),
     ]
-, className="textappear", style={'position': 'relative','max-width': '50vw','min-height': '25vw'} )
+, className="textappear", style={'position': 'relative','max-width': '50vw','min-height': '25vw',
+                                  'margin':'35px', 'padding':'35px'
+                                  ,'border': '2px solid #808080'
+                                  ,'background': '#0C0404'                          
+                                  ,'border-radius': '8px'
+                                  ,'box-shadow': 'rgba(0, 0, 0, 0.35) 0px 8px 25px'
+                                  } )
 
 @callback(
     Output("chat-container2", "children"),
