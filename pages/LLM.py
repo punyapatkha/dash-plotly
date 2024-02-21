@@ -28,7 +28,7 @@ layout = html.Div(
         # dcc.RadioItems([x for x in df.day.unique()], id='day-choice'),
         # dcc.Graph(id='bar-fig',
         #           figure=px.bar(df, x='smoker', y='total_bill')),
-        html.H1("Chat Bot Example"),
+        html.H1(" 🤖 Chat Bot Example"),
         dcc.Loading(
 
         html.Div(id="chat-container2", children=[html.H1("Place holder text before update_chat function is run")])
@@ -110,10 +110,10 @@ def update_chat(n_clicks, user_input):
             chat_history = [
                 html.Div([
                     html.Hr(),
-                    html.Div("Question : " +user_input, style={"color": "white"}, className="appearanima"),
+                    html.Div("❓ Question : " +user_input, style={"color": "white"}, className="appearanima"),
                     html.Hr(),
                     # html.Div( user_input, style={"color": "white"}),
-                    html.Div("Bot Response: ", style={"color": "white"}, className="appearanima"),
+                    html.Div("💡 Bot Response : ", style={"color": "white"}, className="appearanima"),
                     # html.Hr(),
                     html.Div( answer , style={"color": "white" }, className="appearanima")
                 ])
