@@ -41,10 +41,10 @@ external_css = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap
 app = Dash(__name__, pages_folder='pages' , use_pages=True, 
            external_stylesheets=external_css
            )
-auth = dash_auth.BasicAuth(
-    app,
-    VALID_USERNAME_PASSWORD_PAIRS
-)
+# auth = dash_auth.BasicAuth(
+#     app,
+#     VALID_USERNAME_PASSWORD_PAIRS
+# )
 
 server = app.server
 
