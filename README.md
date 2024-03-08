@@ -28,17 +28,17 @@ integrate with SQL Database and Langchain
 
 #### Chat Bot Page
 
-- query question with response base from data in database
+- Query question with response base from information in database
 
 ## Page
 
-### Summary Page
+#### Summary Page
 
 ![alt text](https://github.com/punyapatkha/dash-plotly/blob/main/assets/example_page_1.png)
 
 ![alt text](https://github.com/punyapatkha/dash-plotly/blob/main/assets/example_page_2.png)
 
-### Chat Bot Page
+#### Chat Bot Page
 
 ![alt text](https://github.com/punyapatkha/dash-plotly/blob/main/assets/example_page_3.png)
 
