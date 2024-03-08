@@ -17,6 +17,18 @@ integrate with SQL Database and Langchain
 
 [https://dash-plotly-5d29.onrender.com/](https://dash-plotly-5d29.onrender.com/)
 
+## ER Diagram
+
+### Summary Page
+
+![alt text](https://github.com/punyapatkha/dash-plotly/blob/main/assets/example_page_1.png)
+
+![alt text](https://github.com/punyapatkha/dash-plotly/blob/main/assets/example_page_2.png)
+
+### Chat Bot Page
+
+![alt text](https://github.com/punyapatkha/dash-plotly/blob/main/assets/example_page_3.png)
+
 
 ## How to Deploy on Render
 
