@@ -53,9 +53,10 @@ app.layout = html.Div(
     [   
         # header
         html.Div(children=[    
-            html.Img(src="https://static.wixstatic.com/media/44b0f0_07215d41afde492e982c744e99ff55eb~mv2.png",
-                    style={ 'max-width': '16vw','max-height': '16vw','margin-left':10,'margin-top':10})
-            ,html.Div("Retail Dashboard Prototype",style={'text-shadow': '0 0 5px #000000, 0 0 15px #000000'})
+            # html.Img(src="https://static.wixstatic.com/media/44b0f0_07215d41afde492e982c744e99ff55eb~mv2.png",
+            #         style={ 'max-width': '16vw','max-height': '16vw','margin-left':10,'margin-top':10})
+            # ,
+            html.Div("Retail Dashboard Prototype",style={'text-shadow': '0 0 5px #000000, 0 0 15px #000000'})
         ], style={'fontSize':20
         #   ,'margin-top':20
         , 'textAlign':'center'}),
@@ -65,7 +66,7 @@ app.layout = html.Div(
             # dcc.Link("•  "+page['name'], href=page['path'], className="btn btn-dark m-2 fs-5")
             # for page in dash.page_registry.values()
             dcc.Link("• Sales Summary ", href='/', className="btn btn-dark m-2 fs-5"),
-            dcc.Link("• Chat Mind Over Data 💬 ", href="/LLM", className="btn btn-dark m-2 fs-5"),
+            dcc.Link("• Chat Bot 💬 ", href="/LLM", className="btn btn-dark m-2 fs-5"),
             dcc.Link("• Sales Prediction 📈 ", href="/", className="btn btn-dark m-2 fs-5 disabled"),
             dcc.Link("• Cluster Analysis 📊 ", href="/", className="btn btn-dark m-2 fs-5 disabled"),
             dcc.Link("• Faurd Detection ⚠️ ", href="/", className="btn btn-dark m-2 fs-5 disabled")
