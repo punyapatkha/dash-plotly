@@ -28,7 +28,7 @@ integrate with SQL Database and Langchain
 
 #### Chat Bot Page
 
-- Query question with response base from information in database
+- Query question with response base from information in database powered by LangChain and LLM ( ChatGPT )
 
 ## Page
 
