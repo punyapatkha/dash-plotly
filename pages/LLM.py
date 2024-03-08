@@ -19,7 +19,7 @@ from langchain_community.tools.sql_database.tool import QuerySQLDataBaseTool
 
 load_dotenv()
 
-dash.register_page(__name__,path='/LLM',name="Chat Mind Over Data 💬")
+dash.register_page(__name__,path='/LLM',name="Chat Bot 💬")
 
 df = px.data.tips()
 
