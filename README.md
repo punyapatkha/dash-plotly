@@ -19,7 +19,7 @@ integrate with SQL Database and Langchain
 
 ## Current Functionaliy
 
-- Basic Authentication
+- Basic Authentication ( uncomment code in app.py to use )
 - Basic Callback
 
 #### Summary Page
