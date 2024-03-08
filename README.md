@@ -18,7 +18,7 @@ integrate with SQL Database and Langchain
 [https://dash-plotly-5d29.onrender.com/](https://dash-plotly-5d29.onrender.com/)
 
 
-## How to Deploy
+## How to Deploy on Render
 
 1.Create postgres database
 
@@ -32,8 +32,18 @@ integrate with SQL Database and Langchain
 
 
 ## Running Locally
+1.Create postgres database
 
+2.Run migrate.py to generate random data for mockup
+
+3.Get openAI API token
+
+4.Add Environment variable to .env file for database and OpenAI API
+
+5.Run following command
 ```
+pip install -r requirement.txt
+
 python app.py
 ```
 
