@@ -17,7 +17,20 @@ integrate with SQL Database and Langchain
 
 [https://dash-plotly-5d29.onrender.com/](https://dash-plotly-5d29.onrender.com/)
 
-## ER Diagram
+## Current Functionaliy
+
+- Basic Authentication
+- Basic Callback
+
+#### Summary Page
+
+- Fetch data directly from PostgreSQL with callback and filter
+
+#### Chat Bot Page
+
+- query question with response base from data in database
+
+## Page
 
 ### Summary Page
 
@@ -29,6 +42,7 @@ integrate with SQL Database and Langchain
 
 ![alt text](https://github.com/punyapatkha/dash-plotly/blob/main/assets/example_page_3.png)
 
+![alt text](https://github.com/punyapatkha/dash-plotly/blob/main/assets/example_page_4.png)
 
 ## How to Deploy on Render
 
